@@ -1,0 +1,17 @@
+#this code is using to delete RDS in current region and it deleted one by one to delete the next one should the previous one completly deleted!
+import boto3 
+
+rds = boto3.client('rds', region_name='eu-west-1')
+def lambda_handler(event, context):
+    # TODO implement
+    resp = rds.describe_db_instances()
+    for reserv in resp["DBInstances"]:
+        print(reserv["DBInstanceIdentifier"] + "stopping")
+        info=reserv["DBInstanceIdentifier"]
+        #rds.delete_db_instance(DBInstanceIdentifier=info,SkipFinalSnapshot=True)
+        print info
+    
+            
+            
+        
+    return 'Done'
